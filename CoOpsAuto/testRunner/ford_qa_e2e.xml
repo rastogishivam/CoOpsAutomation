@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Ford QA Regression Suite1"          verbose="4"             parallel="tests"            thread-count="1">
+
+    <listeners>
+        <listener class-name="com.org.coops.report.CoverageReportListner"/>
+    </listeners>
+
+    <parameter      name="selenium.url"                 value=""/>
+    <parameter      name="islocalrun"                   value="true"/>
+    <parameter      name="browser"                      value="Chrome"/>
+    <parameter      name="environment"                  value="QA"/>
+    <parameter      name="headless"                     value="false"/>
+    <parameter      name="tcrReport"                    value="true"/>
+    <parameter      name="url"                          value="https://co-opsauto-uatx.unqork.io/?style=brand-ford#/display/64c0cced48acd82a445ba7cc?id=6512f81d7d9f6f6ed96f73e2"/>
+
+    <test name="Ford QA Regression Tests"               parallel="methods"              thread-count="1">
+
+        <classes>
+            <class name="com.auto.e2e.Ford_EndToEndScenarios">
+                <methods>
+                    <include name="validate_Ford_E2EScenario_1Driver_1Vehicle"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
