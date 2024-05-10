@@ -1,6 +1,7 @@
 package com.auto.e2e;
 
 import com.auto.pages.*;
+import com.org.coops.constant.Tdata;
 import org.testng.annotations.Test;
 import com.org.coops.base.BaseTest;
 import com.org.coops.utilities.DataProviderUtils;
@@ -24,7 +25,7 @@ public class Ford_EndToEndScenarios extends BaseTest{
 
 		welcome.clickOnStartYourQuoteBtn().isAboutHomePageLoaded();
 
-		/*vehicle.enterVinNumber(vinNumber).enterHomeAddress(homeAddress).clickNextButton();
+		vehicle.enterVinNumber(vinNumber).enterHomeAddress(homeAddress).clickNextButton();
 
 		purchaseInfo.isVehicleCondNew(true).clickNextButton();
 
@@ -48,7 +49,7 @@ public class Ford_EndToEndScenarios extends BaseTest{
 
 		reviewAgreement.qualificationAgreement(true).digitalDocDelivery(true).privacyConsent(true).clickGotoPaymentButton();
 
-		payment.enterCardHolderName(Tdata.Payment.CARD_HOLDER_NAME).enterCardNumber(Tdata.Payment.CARD_NUMBER).enterCVV(Tdata.Payment.CVV).enterExpiryDate(Tdata.Payment.EXPIRY_DATE).clickPurchaseButton();*/
+		payment.enterCardHolderName(Tdata.Payment.CARD_HOLDER_NAME).enterCardNumber(Tdata.Payment.CARD_NUMBER).enterCVV(Tdata.Payment.CVV).enterExpiryDate(Tdata.Payment.EXPIRY_DATE).clickPurchaseButton();
     }
 }
 
