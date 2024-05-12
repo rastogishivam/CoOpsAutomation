@@ -4,13 +4,21 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Protocol;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.org.coops.constant.Constant;
+import com.org.coops.factory.PlaywrightFactory;
+import com.org.coops.logger.TestLogger;
+import com.org.coops.utilities.DateUtils;
+import com.org.coops.utilities.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
 public class CoverageReportManager {
 
+    private static final Logger s_logger = LogManager.getLogger(CoverageReportManager.class);
     private static ExtentReports extentReports;
-    private static final String reportFileName = "Test-Automation-Coverage-Report" + ".html";
+    private static final String reportFileName = "Test-Report" + DateUtils.getCurrentDateWithTime() + ".html";
     private static final String reportFilePath = "./target/coverageReport";
     private static final String reportFileLocation = reportFilePath + "/" + reportFileName;
     public static boolean TCR_FLAG = false;
@@ -25,12 +33,13 @@ public class CoverageReportManager {
     }
 
     private static ExtentReports createSparkReportInstance(){
-        String fileName = getReportPath(reportFilePath);
+        String fileName = getReportPath(Constant.COVERAGE_REPORT_FOLDER_PATH);
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(fileName);
+        sparkReporter.config().setReportName("Co-Ops Automation Test Report");
         sparkReporter.config().setTheme(Theme.STANDARD);
-        sparkReporter.config().setDocumentTitle("Ford Partner UI" + " Report");
+        sparkReporter.config().setDocumentTitle("Co-Ops Partner UI" + " Report");
         sparkReporter.config().setEncoding("utf-8");
-        sparkReporter.config().setReportName("Ford Partner UI" + " Report");
+        sparkReporter.config().setReportName("Co-Ops Partner UI" + " Report");
         sparkReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
         sparkReporter.config().setProtocol(Protocol.HTTPS);
         sparkReporter.config().setCss("css-string");
@@ -38,40 +47,18 @@ public class CoverageReportManager {
         extentReports = new ExtentReports();
         extentReports.attachReporter(sparkReporter);
         extentReports.setSystemInfo("OS", System.getProperty("os.name"));
-        extentReports.setSystemInfo("Test Environment", "QA");
+        extentReports.setSystemInfo("Test Environment", TestLogger.getEnv());
+        extentReports.setSystemInfo("Partner Name", TestLogger.getPartner());
         return extentReports;
     }
-
-    /*public static ExtentReports createInstance() {
-        String fileName = getReportPath(reportFilePath);
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
-        htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
-        htmlReporter.config().setChartVisibilityOnOpen(true);
-        htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setDocumentTitle("Ford Partner UI" + " Report");
-        htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setReportName("Ford Partner UI" + " Report");
-        htmlReporter.config().setTimeStampFormat("EEEE, MMMM dd, yyyy, hh:mm a '('zzz')'");
-        htmlReporter.config().setProtocol(Protocol.HTTPS);
-        htmlReporter.config().setCSS("css-string");
-        htmlReporter.config().setJS("js-string");
-
-        extentReports = new ExtentReports();
-        extentReports.attachReporter(htmlReporter);
-        extentReports.setSystemInfo("OS", System.getProperty("os.name"));
-        extentReports.setSystemInfo("Test Environment", "QA");
-        return extentReports;
-    }*/
-
     private static String getReportPath(String path) {
         File testDirectory = new File(path);
         if(!testDirectory.exists()) {
             if(testDirectory.mkdir()) {
-                System.out.println("Directory : " + path + " is created.!");
+                s_logger.info("The Directory is created at path :: " + path);
                 return reportFileLocation;
-
             }else {
-                System.out.println("Filed to create Directory : " + path);
+                s_logger.info("The Directory is already created at path :: " + path);
                 return System.getProperty("user.dir");
             }
         }

@@ -1,20 +1,25 @@
 package com.org.coops.base;
 
-import java.util.Properties;
+import java.nio.file.Paths;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.org.coops.constant.Constant;
+import com.org.coops.logger.TestLogger;
+import com.org.coops.utilities.DateUtils;
+import com.org.coops.utilities.FileUtils;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import com.microsoft.playwright.Page;
 import com.org.coops.factory.PlaywrightFactory;
 
 public class BaseTest {
-
-    private static final Logger s_logger = LogManager.getLogger(BaseTest.class);
 	PlaywrightFactory factory;
-    Properties properties;
-    protected static Page page;
+    public static Page page;
+
+    @BeforeSuite
+    public void init(ITestContext context){
+        FileUtils.init();
+        TestLogger.init(context);
+    }
 
     @BeforeClass
     public void setup(ITestContext context){
@@ -29,5 +34,19 @@ public class BaseTest {
     @AfterTest
     public void tearDown(){
         page.context().browser().close();
+    }
+
+    public static String captureScreenshot(){
+        String path = Constant.FAILED_IMG_PATH;
+        if(path.startsWith("/")){
+            path = path.replaceFirst("/","");
+        }
+        String imageName = "screenshot_" + DateUtils.getCurrentDateWithTime() + ".png";
+        path = path + imageName;
+        page.screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get(path))
+                .setFullPage(true));
+        System.out.println("Image Name :: " + imageName);
+        return imageName;
     }
 }

@@ -1,11 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Ford QA Regression Suite1"          verbose="4"             parallel="tests"            thread-count="1">
+<suite name="Ford QA Regression Suite"          verbose="4"             parallel="tests"            thread-count="1">
 
     <listeners>
         <listener class-name="com.org.coops.report.CoverageReportListner"/>
     </listeners>
 
+    <parameter      name="partnerName"                  value="Ford"/>
     <parameter      name="selenium.url"                 value=""/>
     <parameter      name="islocalrun"                   value="true"/>
     <parameter      name="browser"                      value="Chrome"/>

@@ -19,7 +19,7 @@
         <classes>
             <class name="com.event.e2e.Event_EndToEndScenarios">
                 <methods>
-                    <include name=""/>
+                    <include name="validate_Ford_E2EScenario_1Driver_1Vehicle"/>
                 </methods>
             </class>
         </classes>

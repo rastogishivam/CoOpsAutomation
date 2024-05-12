@@ -3,6 +3,7 @@ package com.auto.pages;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import com.org.coops.logger.TestLogger;
+import com.org.coops.utilities.DateUtils;
 
 import java.time.LocalDate;
 
@@ -28,11 +29,9 @@ public class ReviewYourQuote {
     }
 
     public ReviewYourQuote selectCoverageStartDateFromToday(){
-        LocalDate currentDate = LocalDate.now();
-        String dayOfMonth = String.valueOf(currentDate.getDayOfMonth());
-        TestLogger.log("Select the Coverage Start date from today :: " + dayOfMonth);
+        TestLogger.log("Select the Coverage Start date from today :: " + DateUtils.getCurrentDay());
         driver.click(coverageStartDateCalendar);
-        driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(dayOfMonth).setExact(true)).click();
+        driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
         return this;
     }
 

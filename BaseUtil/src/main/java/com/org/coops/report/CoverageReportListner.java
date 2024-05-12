@@ -1,6 +1,9 @@
 package com.org.coops.report;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
+import com.org.coops.base.BaseTest;
+import com.org.coops.factory.PlaywrightFactory;
 import com.org.coops.logger.TestLogger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -26,7 +29,6 @@ public class CoverageReportListner implements ITestListener {
         System.out.println("*** Test " + result.getMethod().getMethodName() + " skipped...");
         if(CoverageReportManager.TCR_FLAG  && null != TestLogger.getTest()) {
             TestLogger.getTest().log(Status.SKIP, "Test Skipped");
-//            if (result.wasRetried()) TestLogger.removeLastTestFromCoverage(result.getMethod().getMethodName());
         }
     }
     public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {

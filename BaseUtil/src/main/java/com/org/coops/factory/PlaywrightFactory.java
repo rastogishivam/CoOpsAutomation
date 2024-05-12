@@ -3,7 +3,12 @@ package com.org.coops.factory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Properties;
+
+import com.org.coops.constant.Constant;
+import com.org.coops.logger.TestLogger;
+import com.org.coops.utilities.DateUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.microsoft.playwright.*;
@@ -11,11 +16,11 @@ import com.microsoft.playwright.*;
 public class PlaywrightFactory {
 
 	private static final Logger s_logger = LogManager.getLogger(PlaywrightFactory.class);
-    protected static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
-    protected static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
-    protected static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
-    protected static ThreadLocal<Page> tlPage = new ThreadLocal<>();
-    Properties properties;
+    private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
+    private static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
+    private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
+    private static ThreadLocal<Page> tlPage = new ThreadLocal<>();
+
 
     public Page initBrowser(String env, String browserName, boolean headless, String url){
         if(env.equalsIgnoreCase("QA")){
@@ -65,17 +70,5 @@ public class PlaywrightFactory {
 
     public static Page getPage(){
         return tlPage.get();
-    }
-
-    public Properties init_prop(){
-        try {
-            System.out.println("User Directory ::: " + System.getProperty("user.dir"));
-            FileInputStream  fileInputStream = new FileInputStream(new File(System.getProperty("user.dir").replace("\\","/") + "/src/main/resources/Config/config.properties"));
-            properties = new Properties();
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return properties;
     }
 }

@@ -1,13 +1,6 @@
 package com.org.coops.logger;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.org.coops.base.BaseTest;
 import com.org.coops.report.CoverageReportManager;
 import org.testng.Assert;
 
@@ -16,29 +9,30 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.ITestContext;
 
 public class TestLogger extends CoverageReportManager {
 	private static final Logger s_logger = LogManager.getLogger(TestLogger.class);
-    static Map<Integer, ExtentTest> extentTestMap = new HashMap<>();
-    static ExtentTest test;
-    static Map<String, List<String>> coverageTestMap = Collections.synchronizedMap(new LinkedHashMap<>());
-    static HashMap<String, String> methodVsTestNameMap = new HashMap<>();
-    static Set<String> ignoreTestKeys = new HashSet<>();
-    static String lastTestCase = "";
     public static long START_TIME;
     static long END_TIME;
+    private static String partner;
+    private static String env;
+    public static ThreadLocal<ExtentTest> extentTestThreadLocal = new ThreadLocal<ExtentTest>();
+    public static ExtentReports extent;
 
-    static ExtentReports extent = CoverageReportManager.getInstance();
+    public static void init(ITestContext context){
+        setDetails(context);
+        setEnv(context);
+        extent = CoverageReportManager.getInstance();
+    }
 
     public static synchronized ExtentTest getTest() {
-        return test;
+        return extentTestThreadLocal.get();
     }
 
     public static synchronized void log(String step) {
         s_logger.info(step);
         if(CoverageReportManager.TCR_FLAG) {
-//            String threadId = String.valueOf((int) Thread.currentThread().getId());
-//            coverageTestMap.get(getTest().getModel().getStartTime().hashCode() + "#" + getTest().getModel().getHierarchicalName()+"-"+getTest().getModel().getID() + "#" + threadId).add(step+"#info");
             TestLogger.getTest().log(Status.INFO, step);
         }
     }
@@ -55,8 +49,10 @@ public class TestLogger extends CoverageReportManager {
             step_status = "fail";
         }
         if(CoverageReportManager.TCR_FLAG) {
-            String threadId = String.valueOf((int) Thread.currentThread().getId());
-//            coverageTestMap.get(getTest().getModel().getStartTime().hashCode() + "#" + getTest().getModel().getHierarchicalName()+"-"+getTest().getModel().getID() + "#" + threadId).add(step+"#"+step_status);
+            if(step_status.equalsIgnoreCase("fail")){
+                String screenshotPath = BaseTest.captureScreenshot();
+                getTest().addScreenCaptureFromPath(screenshotPath);
+            }
             TestLogger.getTest().log(stepStatus, step);
         }
     }
@@ -64,19 +60,16 @@ public class TestLogger extends CoverageReportManager {
     public static synchronized void endTest() {
         END_TIME = System.currentTimeMillis();
         if(CoverageReportManager.TCR_FLAG) {
-//            createCoverageReport();
-            /*createTabularCoverageReport();
-            sendHtmlCoverageEmail();*/
+            extent.flush();
         }
-        extent.flush();
     }
 
     public static synchronized ExtentTest startTest(String testName, String description) {
         String expendedTestName =  testName;
         if(!testName.trim().contains(" ")) expendedTestName = expandTestName(testName);
         String testDescription = "Test Case Description : " + description;
-        test = extent.createTest(testName, testDescription);
-        return test;
+        extentTestThreadLocal.set(extent.createTest(testName, testDescription));
+        return extentTestThreadLocal.get();
     }
 
     private static String expandTestName(String tName){
@@ -97,10 +90,20 @@ public class TestLogger extends CoverageReportManager {
     public static void logStep(String step) {
     	s_logger.info(step);
     }
-    
-    public static void logTestCase(String step) {
-    	System.out.println("*********************************************************\n");
-    	s_logger.info("Started the Test Case ::::  " + step);
-    	System.out.println("");
+
+    private static void setDetails(ITestContext context){
+        partner = context.getCurrentXmlTest().getParameter("partnerName");
+    }
+
+    public static String getPartner(){
+        return partner;
+    }
+
+    private static void setEnv(ITestContext context){
+        env = context.getCurrentXmlTest().getParameter("environment");
+    }
+
+    public static String getEnv(){
+        return env;
     }
 }

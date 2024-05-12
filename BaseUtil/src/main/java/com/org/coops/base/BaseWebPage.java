@@ -15,9 +15,4 @@ public class BaseWebPage {
     	logger = LogManager.getLogger(BaseWebPage.class);
     	driver = page;
     }
-
-    public void logTestStepAndResult(boolean result, String testStep) {
-        TestLogger.log(result, testStep);
-        Assert.assertTrue(result, testStep);
-    }
 }
