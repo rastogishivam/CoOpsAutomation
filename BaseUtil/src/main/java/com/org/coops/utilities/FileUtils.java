@@ -1,14 +1,14 @@
 package com.org.coops.utilities;
 
 import com.org.coops.constant.Constant;
-import com.org.coops.factory.PlaywrightFactory;
-import com.org.coops.logger.TestLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Properties;
 
 public class FileUtils {
@@ -19,9 +19,11 @@ public class FileUtils {
         prop = init_prop();
     }
     public static void cleanCoverageReport(){
-        File file = new File(Constant.COVERAGE_REPORT_FOLDER_PATH);
+        String coverageReport = decodePath(Constant.COVERAGE_REPORT_FOLDER_PATH);
+        File file = new File(coverageReport);
         File[] files = file.listFiles();
-        if(files.length != 0 || files != null){
+        if(files != null){
+            s_logger.info("Cleaning the Coverage Report from path :: " + coverageReport);
             for(File covFile : files){
                 covFile.delete();
             }
@@ -30,8 +32,9 @@ public class FileUtils {
     private static Properties init_prop(){
         Properties properties = new Properties();
         try {
-            s_logger.info("Read the Config File from :: " + Constant.CONFIG_PROP_PATH);
-            FileInputStream fileInputStream = new FileInputStream(new File(Constant.CONFIG_PROP_PATH));
+            String configFile = decodePath(Constant.CONFIG_PROP_PATH);
+            s_logger.info("Read the Config File from :: " + configFile);
+            FileInputStream fileInputStream = new FileInputStream(configFile);
             properties.load(fileInputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -64,5 +67,16 @@ public class FileUtils {
             break;
         }
        return project;
+    }
+
+    public static String decodePath(String path){
+        String decodedPath = path;
+        try {
+            decodedPath = URLDecoder.decode(path, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            s_logger.error(e.getStackTrace());
+            throw new RuntimeException(e);
+        }
+        return decodedPath;
     }
 }

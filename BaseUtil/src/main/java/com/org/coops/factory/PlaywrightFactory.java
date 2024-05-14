@@ -9,6 +9,7 @@ import java.util.Properties;
 import com.org.coops.constant.Constant;
 import com.org.coops.logger.TestLogger;
 import com.org.coops.utilities.DateUtils;
+import com.org.coops.utilities.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.microsoft.playwright.*;
@@ -19,7 +20,7 @@ public class PlaywrightFactory {
     private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
     private static ThreadLocal<Playwright> tlPlaywright = new ThreadLocal<>();
     private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();
-    private static ThreadLocal<Page> tlPage = new ThreadLocal<>();
+    private static final ThreadLocal<Page> tlPage = new InheritableThreadLocal<Page>();
 
 
     public Page initBrowser(String env, String browserName, boolean headless, String url){
@@ -70,5 +71,19 @@ public class PlaywrightFactory {
 
     public static Page getPage(){
         return tlPage.get();
+    }
+
+    public static String captureScreenshot(){
+        String path = FileUtils.decodePath(Constant.FAILED_IMG_PATH);
+        if(path.startsWith("/")){
+            path = path.replaceFirst("/","");
+        }
+        String imageName = "screenshot_" + DateUtils.getCurrentDateWithTime() + ".png";
+        path = path + imageName;
+        getPage().screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get(path))
+                .setFullPage(true));
+        System.out.println("Image Name :: " + imageName);
+        return imageName;
     }
 }

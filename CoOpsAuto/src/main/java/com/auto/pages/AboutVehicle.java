@@ -22,7 +22,7 @@ public class AboutVehicle {
     public AboutVehicle isAboutHomePageLoaded() {
     	driver.waitForSelector(pageHeader);
     	boolean isVisible = driver.isVisible(pageHeader);
-    	TestLogger.logStepAndVerify("Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle **", isVisible);
+    	TestLogger.logStepAndVerify("Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle **", !isVisible);
     	return this;
     }
     

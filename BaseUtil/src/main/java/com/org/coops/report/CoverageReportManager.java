@@ -33,7 +33,7 @@ public class CoverageReportManager {
     }
 
     private static ExtentReports createSparkReportInstance(){
-        String fileName = getReportPath(Constant.COVERAGE_REPORT_FOLDER_PATH);
+        String fileName = getReportPath(FileUtils.decodePath(Constant.COVERAGE_REPORT_FOLDER_PATH));
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(fileName);
         sparkReporter.config().setReportName("Co-Ops Automation Test Report");
         sparkReporter.config().setTheme(Theme.STANDARD);

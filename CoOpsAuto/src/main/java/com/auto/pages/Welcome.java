@@ -1,17 +1,19 @@
 package com.auto.pages;
 
+import com.org.coops.base.BaseWebPage;
 import org.testng.Assert;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
 import com.org.coops.logger.TestLogger;
 
-public class Welcome {
+public class Welcome extends BaseWebPage {
 
     private Page driver;
     private String startYourQuoteBtn = "button#btnNextWelcome";
     private String agreeBtn = "button#btnAgree";
 
     public Welcome(Page page){
+        super(page);
         driver = page;
     }
 

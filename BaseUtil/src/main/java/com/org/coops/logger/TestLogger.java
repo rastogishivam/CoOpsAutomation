@@ -1,6 +1,7 @@
 package com.org.coops.logger;
 
 import com.org.coops.base.BaseTest;
+import com.org.coops.factory.PlaywrightFactory;
 import com.org.coops.report.CoverageReportManager;
 import org.testng.Assert;
 
@@ -50,7 +51,7 @@ public class TestLogger extends CoverageReportManager {
         }
         if(CoverageReportManager.TCR_FLAG) {
             if(step_status.equalsIgnoreCase("fail")){
-                String screenshotPath = BaseTest.captureScreenshot();
+                String screenshotPath = PlaywrightFactory.captureScreenshot();
                 getTest().addScreenCaptureFromPath(screenshotPath);
             }
             TestLogger.getTest().log(stepStatus, step);

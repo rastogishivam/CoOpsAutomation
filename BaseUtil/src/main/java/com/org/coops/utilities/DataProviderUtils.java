@@ -21,7 +21,7 @@ public class DataProviderUtils {
 		Object[][] data = null;
 		boolean isEnvQA = context.getCurrentXmlTest().getParameter("environment").equals("QA");
 		if(isEnvQA) {
-			String excelPath = Constant.PROJECT_ROOT_PATH + Constant.FORD_EXCEL_PATH;
+			String excelPath = FileUtils.decodePath(Constant.PROJECT_ROOT_PATH + Constant.FORD_EXCEL_PATH);
 			s_logger.info("The Test Data Excel sheet is loaded from path :: " + excelPath);
 			data = ExcelUtility.getExcelData(excelPath, sheetName, method.getName());
 		}
@@ -37,7 +37,7 @@ public class DataProviderUtils {
 		Object[][] data = null;
 		boolean isEnvQA = context.getCurrentXmlTest().getParameter("environment").equals("QA");
 		if(isEnvQA) {
-			String excelPath = Constant.PROJECT_ROOT_PATH + Constant.EVENT_EXCEL_PATH;
+			String excelPath = FileUtils.decodePath(Constant.PROJECT_ROOT_PATH + Constant.EVENT_EXCEL_PATH);
 			s_logger.info("The Test Data Excel sheet is loaded from path :: " + excelPath);
 			data = ExcelUtility.getExcelData(excelPath, sheetName, method.getName());
 		}
@@ -53,7 +53,7 @@ public class DataProviderUtils {
 		Object[][] data = null;
 		boolean isEnvQA = context.getCurrentXmlTest().getParameter("environment").equals("QA");
 		if(isEnvQA) {
-			String excelPath = Constant.PROJECT_ROOT_PATH + Constant.HAB_EXCEL_PATH;
+			String excelPath = FileUtils.decodePath(Constant.PROJECT_ROOT_PATH + Constant.HAB_EXCEL_PATH);
 			s_logger.info("The Test Data Excel sheet is loaded from path :: " + excelPath);
 			data = ExcelUtility.getExcelData(excelPath, sheetName, method.getName());
 		}
