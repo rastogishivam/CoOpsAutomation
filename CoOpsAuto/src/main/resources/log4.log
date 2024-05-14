@@ -1,0 +1,93 @@
+13:53:00.877 [main] INFO  - Read the Config File from :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/BaseUtil/src/main/resources/Config/config.properties
+13:53:00.886 [main] INFO  - The Directory is created at path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/target/coverageReport
+13:53:01.069 [TestNG-test=Ford QA Regression Tests-1] INFO  - The Test Data Excel sheet is loaded from path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/src/test/resources/TestData/Ford_UI_QA_TestData.xlsx
+13:53:01.083 [TestNG-test=Ford QA Regression Tests-1] INFO  - Loading the Excel sheet :: Ford_E2E
+13:53:01.501 [TestNG-PoolService-0] INFO  - Initializing the Browser :: Chrome
+13:53:31.248 [TestNG-PoolService-0] INFO  - Verified : Welcome page loaded and user clicked on Start Your Quote Button :: true
+13:53:33.068 [TestNG-PoolService-0] INFO  - Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle ** :: false
+17:16:46.308 [main] INFO  - Cleaning the Coverage Report from path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/target/coverageReport
+17:16:46.314 [main] INFO  - Read the Config File from :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/BaseUtil/src/main/resources/Config/config.properties
+17:16:46.587 [TestNG-test=Ford QA Regression Tests-1] INFO  - The Test Data Excel sheet is loaded from path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/src/test/resources/TestData/Ford_UI_QA_TestData.xlsx
+17:16:46.608 [TestNG-test=Ford QA Regression Tests-1] INFO  - Loading the Excel sheet :: Ford_E2E
+17:16:47.135 [TestNG-PoolService-0] INFO  - Initializing the Browser :: Chrome
+17:17:22.422 [TestNG-PoolService-0] INFO  - Verified : Welcome page loaded and user clicked on Start Your Quote Button :: true
+17:17:25.632 [TestNG-PoolService-0] INFO  - Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle ** :: true
+17:17:25.632 [TestNG-PoolService-0] INFO  - Enter the VIN Number :: 2FMPK4K95PB872610
+17:17:28.484 [TestNG-PoolService-0] INFO  - Enter the Home Address :: 502-770 Hager Ave Burlington, ON, L7S 1X1
+17:17:30.262 [TestNG-PoolService-0] INFO  - Is the Next Button enabled, after entered the address :: false
+17:26:23.848 [main] INFO  - Cleaning the Coverage Report from path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/target/coverageReport
+17:26:23.855 [main] INFO  - Read the Config File from :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/BaseUtil/src/main/resources/Config/config.properties
+17:26:24.230 [TestNG-test=Ford QA Regression Tests-1] INFO  - The Test Data Excel sheet is loaded from path :: /C:/Users/MonikaSrivastava/OneDrive - AIDEN AI PRIVATE LIMITED/Documents/AidenAI/Event_Workspace/CoOpsAuto/src/test/resources/TestData/Ford_UI_QA_TestData.xlsx
+17:26:24.232 [TestNG-test=Ford QA Regression Tests-1] INFO  - Loading the Excel sheet :: Ford_E2E
+17:26:24.900 [TestNG-PoolService-0] INFO  - Initializing the Browser :: Chrome
+17:26:48.770 [TestNG-PoolService-0] INFO  - Verified : Welcome page loaded and user clicked on Start Your Quote Button :: true
+17:26:51.043 [TestNG-PoolService-0] INFO  - Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle ** :: true
+17:26:51.043 [TestNG-PoolService-0] INFO  - Enter the VIN Number :: 2FMPK4K95PB872610
+17:26:54.130 [TestNG-PoolService-0] INFO  - Enter the Home Address :: 502-770 Hager Ave Burlington, ON, L7S 1X1
+17:26:55.907 [TestNG-PoolService-0] INFO  - Is the Next Button enabled, after entered the address :: true
+17:26:55.907 [TestNG-PoolService-0] INFO  - Click the next button at About Your Vehicle Page
+17:27:05.566 [TestNG-PoolService-0] INFO  - Is the User moved to Vehicle Purchase Information Page :: true
+17:27:05.567 [TestNG-PoolService-0] INFO  - Select the Vehicle Condition as New
+17:27:07.312 [TestNG-PoolService-0] INFO  - Click the next button at About Your Vehicle Page
+17:27:09.464 [TestNG-PoolService-0] INFO  - Is the User moved to Vehicle Purchase Information Page :: true
+17:27:09.467 [TestNG-PoolService-0] INFO  - Selecting yearly KM: 5,001 to 10,000
+17:27:11.087 [TestNG-PoolService-0] INFO  - Select the Business Use as No
+17:27:11.868 [TestNG-PoolService-0] INFO  - Select the Commercial Use as No
+17:27:12.615 [TestNG-PoolService-0] INFO  - Click the next button at About Your Vehicle Page
+17:27:14.955 [TestNG-PoolService-0] INFO  - Is the User moved to How is this vehicle used? Page :: true
+17:27:14.955 [TestNG-PoolService-0] INFO  - Enter the Driver First Name :: James Miteshtest
+17:27:16.883 [TestNG-PoolService-0] INFO  - Enter the Driver Last Name :: Purple
+17:27:17.577 [TestNG-PoolService-0] INFO  - Select the Driver Sex Status :: Male
+17:27:18.225 [TestNG-PoolService-0] INFO  - Select the Driver Marital Status :: Single
+17:27:18.907 [TestNG-PoolService-0] INFO  - Select the Driver DOB :: Nov 4, 1969
+17:27:21.010 [TestNG-PoolService-0] INFO  - Click the next button of Driver Information Page
+17:27:25.389 [TestNG-PoolService-0] INFO  - Is the user moved to Licence Information page :: true
+17:27:25.389 [TestNG-PoolService-0] INFO  - Select the Driver Licence Outside Canada or the US as No
+17:27:26.793 [TestNG-PoolService-0] INFO  - Select the Driver Licence Class as G
+17:27:27.567 [TestNG-PoolService-0] INFO  - Select the Age to receive the GLIC licence
+17:27:28.218 [TestNG-PoolService-0] INFO  - Click the next button at Driver Licence Page
+17:27:31.720 [TestNG-PoolService-0] INFO  - Is the User moved to Driving Experience Page :: true
+17:27:31.720 [TestNG-PoolService-0] INFO  - Select Any major, serious, or criminal convictions in the last 3 years as No
+17:27:33.576 [TestNG-PoolService-0] INFO  - Select Any at-fault accidents in the last 10 years as No
+17:27:34.511 [TestNG-PoolService-0] INFO  - Click the next button at Driver Experience Page
+17:27:39.664 [TestNG-PoolService-0] INFO  - Is the User moved to Assign a primary driver to each vehicle Page :: true
+17:27:39.664 [TestNG-PoolService-0] INFO  - Select the primary driver for the Vehicle :: James Miteshtest Purple
+17:27:41.180 [TestNG-PoolService-0] INFO  - Click the next button at Assign Primary Driver Page
+17:27:46.511 [TestNG-PoolService-0] INFO  - Is the User moved to Marketing consent Page :: true
+17:27:46.511 [TestNG-PoolService-0] INFO  - Enter the email :: shivam.rastogi-x+ford004@aidenai.com
+17:27:47.179 [TestNG-PoolService-0] INFO  - Enter the Phone Number for Marketing Consent :: 6476471234
+17:27:48.004 [TestNG-PoolService-0] INFO  - User Opted In for the Consent
+17:27:48.724 [TestNG-PoolService-0] INFO  - Click the next button at Marketing Consent Page
+17:27:59.695 [TestNG-PoolService-0] INFO  - Is the User moved to Review your Quote Page :: true
+17:27:59.695 [TestNG-PoolService-0] INFO  - Select the Policy Coverage Frequency :: Monthly
+17:27:59.695 [TestNG-PoolService-0] INFO  - Select the Coverage Start date from today :: 14
+17:28:02.552 [TestNG-PoolService-0] INFO  - Click the Proceed To Buy button at Review Your Quote
+17:28:04.284 [TestNG-PoolService-0] INFO  - Is the User moved to Review your Quote Page :: true
+17:28:04.291 [TestNG-PoolService-0] INFO  - Click on Vehicle More Details Needed Button
+17:28:08.274 [TestNG-PoolService-0] INFO  - Is the Ownership Status page opened :: true
+17:28:08.274 [TestNG-PoolService-0] INFO  - Select the Type of vehicle Ownership
+17:28:09.755 [TestNG-PoolService-0] INFO  - Click to Save button at Ownership Status
+17:28:15.977 [TestNG-PoolService-0] INFO  - Click on Driver More Details Needed Button
+17:28:17.617 [TestNG-PoolService-0] INFO  - Is the Driver Licence Consent page opened :: true
+17:28:17.617 [TestNG-PoolService-0] INFO  - Enter the Driver Licence Number :: P94013830691104
+17:28:19.211 [TestNG-PoolService-0] INFO  - Click on Next button
+17:28:23.713 [TestNG-PoolService-0] INFO  - Is the Your Insurance History Page opened :: true
+17:28:32.875 [TestNG-PoolService-0] INFO  - Click the next button at Complete All Details Page
+17:28:44.175 [TestNG-PoolService-0] INFO  - Is the User moved to Check All That Apply Page :: true
+17:28:46.375 [TestNG-PoolService-0] INFO  - Click to Next Button After review the quote
+17:28:55.761 [TestNG-PoolService-0] INFO  - Is the Important Agreement page visible :: true
+17:28:55.761 [TestNG-PoolService-0] INFO  - Open the Qualification Agreement.
+17:28:58.301 [TestNG-PoolService-0] INFO  - Accept the Qualification Agreement
+17:28:59.100 [TestNG-PoolService-0] INFO  - Open the Digital Document Delivery Agreement
+17:28:59.970 [TestNG-PoolService-0] INFO  - Accept the Digital Document Delivery Agreement
+17:29:00.779 [TestNG-PoolService-0] INFO  - Open the Privacy Consent Agreement
+17:29:01.622 [TestNG-PoolService-0] INFO  - Accept the Privacy Consent Agreement
+17:29:02.396 [TestNG-PoolService-0] INFO  - Click the Goto Payment button at Review Agreement Page
+17:29:04.737 [TestNG-PoolService-0] INFO  - Is the User moved to Payment Page :: true
+17:29:04.737 [TestNG-PoolService-0] INFO  - Enter the Card Holder Name :: Test User
+17:29:12.751 [TestNG-PoolService-0] INFO  - Enter the Card Number :: 4030000010001234
+17:29:13.503 [TestNG-PoolService-0] INFO  - Enter the CVV Number :: 123
+17:29:14.212 [TestNG-PoolService-0] INFO  - Enter the Expiry Date :: 05/28
+17:29:14.930 [TestNG-PoolService-0] INFO  - Click the Purchase Payment button at Payment Page
+17:29:25.077 [TestNG-PoolService-0] INFO  - Is the User moved to You are Covered Page :: true
+17:29:25.105 [TestNG-PoolService-0] INFO  - Policy number has been generated - Policy #: A130003932 :: true
