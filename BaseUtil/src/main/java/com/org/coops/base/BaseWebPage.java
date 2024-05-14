@@ -6,7 +6,7 @@ import com.microsoft.playwright.Page;
 
 public class BaseWebPage {
 
-    private static final Logger s_logger = LogManager.getLogger(BaseWebPage.class);
+    public static final Logger s_logger = LogManager.getLogger(BaseWebPage.class);
 	private Page driver;
     private static Logger logger;
     
