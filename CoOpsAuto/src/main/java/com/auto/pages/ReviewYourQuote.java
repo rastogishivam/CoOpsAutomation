@@ -2,13 +2,12 @@ package com.auto.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.SelectOption;
+import com.org.coops.base.BaseWebPage;
 import com.org.coops.logger.TestLogger;
 import com.org.coops.utilities.DateUtils;
 
-import java.time.LocalDate;
-
-public class ReviewYourQuote {
-
+public class ReviewYourQuote extends BaseWebPage {
     private Page driver;
     private String proceedToBuyBtn = "button#btnNextQuoteHere";
     private String nextPageHeader = "div#htmlMissingInformation";
@@ -17,7 +16,11 @@ public class ReviewYourQuote {
     private String reviewYourQuoteHeader = "div#htmlBindQuoteHere";
     private String nextBtn = "button#btnNextBindHeresYourQuote";
     private String agreementPageHeader = "div#htmlPaymentHeader";
+    private String selectYear = "//select[@class='pika-select pika-select-year']";
+    private String selectMonth = "//select[@class='pika-select pika-select-month']";
+
     public ReviewYourQuote(Page page){
+        super(page);
         driver = page;
     }
 
@@ -28,10 +31,25 @@ public class ReviewYourQuote {
         return this;
     }
 
-    public ReviewYourQuote selectCoverageStartDateFromToday(){
-        TestLogger.log("Select the Coverage Start date from today :: " + DateUtils.getCurrentDay());
+    public ReviewYourQuote selectCoverageStartDate(String date){
         driver.click(coverageStartDateCalendar);
-        driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
+        if(date.equalsIgnoreCase("today")){
+            TestLogger.log("Select the Coverage Start date from today :: " + DateUtils.getCurrentDay());
+            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
+        }else{
+            String[] dates = date.split("/");
+            s_logger.info("Select the Year : " + dates[2]);
+            driver.selectOption(selectYear, new SelectOption().setValue(dates[2]));
+            String month = String.valueOf(Integer.parseInt(dates[0]) - 1);
+            if(month.startsWith("0")){
+                month = month.replaceFirst("0", "");
+            }
+            s_logger.info("Select the Month :: " + month);
+            driver.selectOption(selectMonth, new SelectOption().setValue(month));
+            s_logger.info("Select the Date :: " + dates[1]);
+            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(dates[1]).setExact(true)).click();
+            TestLogger.log("The Coverage Start Date selected :: " + date);
+        }
         return this;
     }
 

@@ -22,7 +22,7 @@ public class AboutVehicle {
     public AboutVehicle isAboutHomePageLoaded() {
     	driver.waitForSelector(pageHeader);
     	boolean isVisible = driver.isVisible(pageHeader);
-    	TestLogger.logStepAndVerify("Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle **", !isVisible);
+    	TestLogger.logStepAndVerify("Verified : After clicked on Start Your Quote Button, user moved to page ** Tell us about your vehicle **", isVisible);
     	return this;
     }
     
@@ -39,13 +39,19 @@ public class AboutVehicle {
     	driver.fill(homeAddressInput, homeAddress);
     	driver.click(pageHeader);
     	driver.waitForSelector(nextBtn);
-    	boolean isEnabled = driver.isEnabled(nextBtn);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		boolean isEnabled = driver.isEnabled(nextBtn);
     	TestLogger.logStepAndVerify("Is the Next Button enabled, after entered the address", isEnabled);
     	return this;
     }
 
 	public VehiclePurchaseInfo clickNextButton() {
 		TestLogger.log("Click the next button at About Your Vehicle Page");
+		driver.isEnabled(nextBtn);
 		driver.click(nextBtn);
 		driver.waitForSelector(nextPageHeader);
 		boolean isVisible = driver.isVisible(nextPageHeader);
