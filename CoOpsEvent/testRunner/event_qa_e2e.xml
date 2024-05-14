@@ -6,20 +6,22 @@
         <listener class-name="com.org.coops.report.CoverageReportListner"/>
     </listeners>
 
+    <parameter      name="partnerName"                  value="Event"/>
     <parameter      name="selenium.url"                 value=""/>
     <parameter      name="islocalrun"                   value="true"/>
     <parameter      name="browser"                      value="Chrome"/>
     <parameter      name="environment"                  value="QA"/>
     <parameter      name="headless"                     value="false"/>
     <parameter      name="tcrReport"                    value="true"/>
-    <parameter      name="url"                          value="https://co-opsauto-uatx.unqork.io/?style=brand-ford#/display/64c0cced48acd82a445ba7cc?id=6512f81d7d9f6f6ed96f73e2"/>
+    <parameter      name="url"                          value="https://cooperators-qa-uatx.unqork.io/#/display/636ab779c134020fdd013ff0"/>
 
     <test name="Event QA Regression Tests"               parallel="methods"              thread-count="1">
 
         <classes>
             <class name="com.event.e2e.Event_EndToEndScenarios">
                 <methods>
-                    <include name="validate_Ford_E2EScenario_1Driver_1Vehicle"/>
+                    <include name="validate_Event_E2EScenario_SingleEvent_Individual"/>
+                    <include name="validate_Event_E2EScenario_MultipleEvents_Individual"/>
                 </methods>
             </class>
         </classes>
