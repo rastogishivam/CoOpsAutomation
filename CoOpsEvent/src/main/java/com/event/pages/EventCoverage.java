@@ -12,9 +12,13 @@ public class EventCoverage {
     private String pageHeader = "//h1[text()='Let’s personalize your coverage']";
     private String nextButton = "button#btnNextIAlcoholShow";
     private String entiyNameLoc = "input#entityName";
-    private String entityEmailLoc = "//*[@id='entityEmailIndv']";
+    private String entityEmailIndv = "//*[@id='entityEmailIndv']";
+	private String entityEmailBiz = "//*[@id='entityEmailBiz']";
     private String entiyPhoneLoc = "input#entityPhone";
     private String termsOfUseLoc = "//*[@id='termsChkbox']";
+
+	private static String HOST_TYPE_BUSINESS = "A Business";
+
   
 
     public EventCoverage(Page page){
@@ -29,15 +33,35 @@ public class EventCoverage {
     }
     
     public EventCoverage enterCoverageDetails(String eventHost, String entityName, String entityEmail, String entityPhone, String province)  {
-      	//driver.pause();
-      	driver.getByText(eventHost).click();
-      	driver.getByLabel("Full Name").click();
-      	driver.getByLabel("Full Name").fill(entityName);
-		TestLogger.log("Full Name entered " + entityName);
-      	driver.locator("#entityProvinceIndv").selectOption(province);
-      	driver.fill(entityEmailLoc, entityEmail);
-		TestLogger.log("Email entered " + entityEmail);
-		driver.getByPlaceholder("(555) 555-").click();
+
+
+		driver.getByText(eventHost).click();
+		if(HOST_TYPE_BUSINESS.equals(eventHost))
+		{
+			TestLogger.log("Business Host " + entityName);
+			driver.getByLabel("Business name").click();
+			driver.getByLabel("Business name ").fill(entityName);
+			TestLogger.log("Business Name entered " + entityName);
+			driver.locator("#entityProvinceBiz").selectOption(province);
+			TestLogger.log("Business Province entered " + province);
+			driver.fill(entityEmailBiz, entityEmail);
+			TestLogger.log("Email entered " + entityEmail);
+			driver.getByPlaceholder("(555) 555-").click();
+		}
+		else {
+			TestLogger.log("Individual Host " + entityName);
+			//driver.getByText(eventHost).click();
+			driver.getByLabel("Full Name").click();
+			driver.getByLabel("Full Name").fill(entityName);
+			TestLogger.log("Full Name entered " + entityName);
+
+
+			driver.locator("#entityProvinceIndv").selectOption(province);
+			TestLogger.log("Individual Province entered " + province);
+			driver.fill(entityEmailIndv, entityEmail);
+			TestLogger.log("Email entered " + entityEmail);
+			driver.getByPlaceholder("(555) 555-").click();
+		}
       	driver.getByPlaceholder("(555) 555-").fill(entityPhone);
 		TestLogger.log("Phone number entered " + entityPhone);
       	driver.getByPlaceholder("(555) 555-").press("Enter");
@@ -47,8 +71,9 @@ public class EventCoverage {
  
 		return this;
     }
-    
-  
-    
+
+
+
+
 
 }

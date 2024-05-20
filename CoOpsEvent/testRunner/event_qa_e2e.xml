@@ -20,8 +20,10 @@
         <classes>
             <class name="com.event.e2e.Event_EndToEndScenarios">
                 <methods>
-                    <include name="validate_Event_E2EScenario_SingleEvent_Individual"/>
-                    <include name="validate_Event_E2EScenario_MultipleEvents_Individual"/>
+                    <exclude name="validate_Event_E2EScenario_SingleEvent_Individual"/>
+                    <exclude name="validate_Event_E2EScenario_MultipleEvents_Individual"/>
+                    <exclude name="validate_Event_E2EScenario_SingleEvent_Business"/>
+                    <include name="validate_Event_E2EScenario_MultipleEvents_Business"/>
                 </methods>
             </class>
         </classes>
