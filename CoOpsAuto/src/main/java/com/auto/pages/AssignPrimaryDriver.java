@@ -2,22 +2,33 @@ package com.auto.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.SelectOption;
+import com.org.coops.base.BaseWebPage;
 import com.org.coops.logger.TestLogger;
 
-public class AssignPrimaryDriver {
+public class AssignPrimaryDriver extends BaseWebPage {
 
     private Page driver;
     private String nextBtn = "button#btnNextVehicleAssignment";
     private String nextPageHeader = "div#htmlAcknowledgement";
+    private String selectDriverFor1stVehicle = "(//select[@aria-label='primaryDriver'])[1]";
+    private String selectDriverFor2ndVehicle = "(//select[@aria-label='primaryDriver'])[2]";
 
     public AssignPrimaryDriver(Page page){
+        super(page);
         driver = page;
     }
 
-    public AssignPrimaryDriver selectPrimaryDriver(String firstName, String lastName){
+    public AssignPrimaryDriver selectDriverFor1stVehicle(String firstName, String lastName){
         String driverName = firstName + " " + lastName;
-        TestLogger.log("Select the primary driver for the Vehicle :: " + driverName);
-        driver.getByLabel("primaryDriver").selectOption(new SelectOption().setLabel(driverName));
+        TestLogger.log("Select the primary driver for the 1st Vehicle :: " + driverName);
+        driver.selectOption(selectDriverFor1stVehicle, new SelectOption().setLabel(driverName));
+        return this;
+    }
+
+    public AssignPrimaryDriver selectDriverFor2ndVehicle(String firstName, String lastName){
+        String driverName = firstName + " " + lastName;
+        TestLogger.log("Select the primary driver for the 1st Vehicle :: " + driverName);
+        driver.selectOption(selectDriverFor2ndVehicle, new SelectOption().setLabel(driverName));
         return this;
     }
 

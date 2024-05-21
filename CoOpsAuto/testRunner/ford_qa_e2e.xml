@@ -20,7 +20,7 @@
         <classes>
             <class name="com.auto.e2e.Ford_EndToEndScenarios">
                 <methods>
-                    <include name="validate_Ford_E2EScenario_1Driver_1Vehicle"/>
+                    <include name="validate_Ford_E2EScenario_2Driver_2Vehicle"/>
 <!--                    <include name="validate_Ford_E2EScenario_2Driver_2Vehicle"/>-->
                 </methods>
             </class>

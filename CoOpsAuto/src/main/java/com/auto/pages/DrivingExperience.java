@@ -12,6 +12,10 @@ public class DrivingExperience {
     private String majorConvictions = "input#hasMajorConvictions-Yes";
     private String noAccidentInLast10Year = "input#hasAccidentsInLastTenYears-No";
     private String accidentInLast10Year = "input#hasAccidentsInLastTenYears-Yes";
+    private String btnAddDriver = "button#btnAddDriver";
+    private String addtionalDriverPopUp = "div#htmlConvictionHardStopHeader";
+    private String gotItBtn = "button#btnDriverSameAddress";
+    private String driverInfoHeader = "div#htmlDriverHeading";
 
     public DrivingExperience(Page page){
         driver = page;
@@ -46,5 +50,16 @@ public class DrivingExperience {
         boolean isVisible = driver.isVisible(nextPageHeader);
         TestLogger.logStepAndVerify("Is the User moved to Assign a primary driver to each vehicle Page", isVisible);
         return new AssignPrimaryDriver(driver);
+    }
+
+    public DriverInformation clickAddDriverBtn(){
+        TestLogger.log("Click the Add Driver button at Driver Experience Page");
+        driver.click(btnAddDriver);
+        driver.waitForSelector(addtionalDriverPopUp);
+        driver.click(gotItBtn);
+        driver.waitForSelector(driverInfoHeader);
+        boolean isVisible = driver.isVisible(driverInfoHeader);
+        TestLogger.logStepAndVerify("Is the User moved to Driver Information Page to add driver details", isVisible);
+        return new DriverInformation(driver);
     }
 }

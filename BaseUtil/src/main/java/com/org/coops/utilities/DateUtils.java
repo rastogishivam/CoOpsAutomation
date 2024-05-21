@@ -17,4 +17,11 @@ public class DateUtils {
         String formattedDateTime = now.format(formatter);
         return formattedDateTime;
     }
+
+    public static String getPreviousYear(){
+        LocalDateTime now = LocalDateTime.now().minusYears(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy");
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime;
+    }
 }

@@ -22,6 +22,8 @@ public class CoverageReportListner implements ITestListener {
         System.out.println("*** Test execution " + result.getMethod().getMethodName() + " failed...");
         if(CoverageReportManager.TCR_FLAG && null != TestLogger.getTest()) {
             TestLogger.getTest().log(Status.FAIL, "Test Failed");
+            String screenshotPath = PlaywrightFactory.captureScreenshot();
+            TestLogger.getTest().addScreenCaptureFromPath(screenshotPath);
         }
     }
 
