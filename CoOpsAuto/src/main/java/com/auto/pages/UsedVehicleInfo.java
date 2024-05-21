@@ -13,6 +13,10 @@ public class UsedVehicleInfo {
 	private String businessNotUse = "input#isForBusinessUse-no";
 	private String commercialUse = "input#isForCommercialUse-Yes";
 	private String commercialNotUse = "input#isForCommercialUse-No";
+	private String addVehicleBtn = "button#btnAddVehicle";
+	private String vehicleRegPopUp = "div#htmlVehicleSameAddressHeader";
+	private String iAgressBtn = "button#btnVehicleSameAddress";
+	private String pageHeader = "//h1[text()='Tell us about your vehicle']";
 
 
     public UsedVehicleInfo(Page page){
@@ -54,5 +58,17 @@ public class UsedVehicleInfo {
 		boolean isVisible = driver.isVisible(nextPageHeader);
 		TestLogger.logStepAndVerify("Is the User moved to How is this vehicle used? Page", isVisible);
 		return new DriverInformation(driver);
+	}
+
+	public AboutVehicle clickAddVehicle(){
+		TestLogger.log("Click to Add Vehicle Button.");
+		driver.click(addVehicleBtn);
+		driver.waitForSelector(vehicleRegPopUp);
+		driver.waitForSelector(iAgressBtn);
+		driver.click(iAgressBtn);
+		driver.waitForSelector(pageHeader);
+		boolean isVisible = driver.isVisible(pageHeader);
+		TestLogger.logStepAndVerify("Verified : After clicked on I Agree Button, user moved to page ** Tell us about your vehicle **", isVisible);
+		return new AboutVehicle(driver);
 	}
 }

@@ -11,6 +11,8 @@ public class VehiclePurchaseInfo {
 	private String nextPageHeader = "div#html";
 	private String newVehicleCond = "input#purchaseCondition-New";
 	private String usedVehicleCond = "input#purchaseCondition-Used";
+	private String notOptInTelematics = "input#hasConnectedAdvantageDiscount-No";
+	private String optInTelematics = "input#hasConnectedAdvantageDiscount-Yes";
 
 
     public VehiclePurchaseInfo(Page page){
@@ -28,6 +30,16 @@ public class VehiclePurchaseInfo {
 		return this;
 	}
 
+	public VehiclePurchaseInfo optInTelematics(boolean flag){
+		if(flag){
+			TestLogger.log("Select the opt-in for Telematics as Yes");
+			driver.click(optInTelematics);
+		}else {
+			TestLogger.log("Select the opt-in for Telematics as No");
+			driver.click(notOptInTelematics);
+		}
+		return this;
+	}
 	public UsedVehicleInfo clickNextButton() {
 		TestLogger.log("Click the next button at About Your Vehicle Page");
 		driver.click(nextBtn);

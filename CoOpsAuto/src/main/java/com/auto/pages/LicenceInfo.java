@@ -2,6 +2,7 @@ package com.auto.pages;
 
 import com.microsoft.playwright.Page;
 import com.org.coops.logger.TestLogger;
+import com.org.coops.utilities.DateUtils;
 
 
 public class LicenceInfo {
@@ -13,6 +14,7 @@ public class LicenceInfo {
 	private String driverLicOutsideCanada = "input#radioDriverLicenseType-Yes";
 	private String driverLicenceClassG = "input#driverLicenseClass-G";
 	private String driverLicenceClassG2 = "input#driverLicenseClass-G2";
+	private String driverYearLicensed = "input#driverYearLicensed";
 
 
     public LicenceInfo(Page page){
@@ -44,6 +46,13 @@ public class LicenceInfo {
 	public LicenceInfo selectAgeToReceiveGLic(String age){
 		TestLogger.log("Select the Age to receive the GLIC licence");
 		driver.getByLabel("Age when you received your G licence").selectOption(age);
+		return this;
+	}
+
+	public LicenceInfo selectYearForG2Lic(){
+		TestLogger.log("Select the year to receive the G2 licence");
+		driver.fill(driverYearLicensed, DateUtils.getPreviousYear());
+		driver.waitForSelector(nextBtn);
 		return this;
 	}
 

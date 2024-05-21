@@ -1,6 +1,7 @@
 package com.auto.pages;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.SelectOption;
 import com.org.coops.logger.TestLogger;
 
 
@@ -18,6 +19,12 @@ public class AboutVehicle {
     public AboutVehicle(Page page){
     	driver = page;
     }
+
+	public AboutVehicle selectTrim(String trim){
+		TestLogger.log("Select trim of the Vehicle :: " + trim);
+		driver.getByLabel("Select Trim").selectOption(new SelectOption().setLabel(trim));
+		return this;
+	}
     
     public AboutVehicle isAboutHomePageLoaded() {
     	driver.waitForSelector(pageHeader);

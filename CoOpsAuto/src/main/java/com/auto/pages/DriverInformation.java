@@ -1,9 +1,10 @@
 package com.auto.pages;
 
 import com.microsoft.playwright.Page;
+import com.org.coops.base.BaseWebPage;
 import com.org.coops.logger.TestLogger;
 
-public class DriverInformation {
+public class DriverInformation extends BaseWebPage {
 
     private Page driver;
     private String nextBtn = "button#btnNextDriverName";
@@ -14,12 +15,16 @@ public class DriverInformation {
     private String year = "input#driverDateOfBirthYear";
 
     public DriverInformation(Page page){
+        super(page);
         driver = page;
     }
 
     public DriverInformation enterFirstName(String firstName){
         TestLogger.log("Enter the Driver First Name :: " + firstName);
-        driver.fill(dFirstName, firstName);
+        wait(3);
+        driver.click(dFirstName, new Page.ClickOptions().setClickCount(3));
+        driver.keyboard().press("Backspace");
+        driver.keyboard().type(firstName);
         return this;
     }
 

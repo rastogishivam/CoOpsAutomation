@@ -1,8 +1,12 @@
 package com.org.coops.base;
 
+import com.microsoft.playwright.options.SelectOption;
+import com.org.coops.logger.TestLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.microsoft.playwright.Page;
+
+import java.time.Duration;
 
 public class BaseWebPage {
 
@@ -23,4 +27,12 @@ public class BaseWebPage {
         return loc;
     }
 
+    public void wait(int sec){
+        Long seconds = (long) sec;
+        try {
+            Thread.sleep(seconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
