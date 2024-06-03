@@ -14,13 +14,15 @@
     <parameter      name="headless"                     value="false"/>
     <parameter      name="tcrReport"                    value="true"/>
     <parameter      name="url"                          value="https://co-opsauto-uatx.unqork.io/?style=brand-ford#/display/64c0cced48acd82a445ba7cc?id=6512f81d7d9f6f6ed96f73e2"/>
+    <parameter      name="isCSR_Login"                  value="true"/>
+    <parameter      name="csr_url"                      value="https://co-opsauto-qa-uatx.unqork.io/app/poemcustomersupportportal#/display/64c3f5e3caa6f28bcf3daa13?id=66503f79fc5138618235ecd9"/>
 
     <test name="Ford QA Regression Tests"               parallel="methods"              thread-count="1">
 
         <classes>
             <class name="com.auto.e2e.Ford_EndToEndScenarios">
                 <methods>
-                    <include name="validate_Ford_E2EScenario_2Driver_2Vehicle"/>
+                    <include name="validate_Ford_E2EScenario_1Driver_2Vehicle"/>
 <!--                    <include name="validate_Ford_E2EScenario_2Driver_2Vehicle"/>-->
                 </methods>
             </class>

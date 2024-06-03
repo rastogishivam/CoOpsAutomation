@@ -16,7 +16,7 @@ public class FileUtils {
     private static final Logger s_logger = LogManager.getLogger(FileUtils.class);
     public static void init(){
         cleanCoverageReport();
-        prop = init_prop();
+//        prop = init_prop();
     }
     public static void cleanCoverageReport(){
         String coverageReport = decodePath(Constant.COVERAGE_REPORT_FOLDER_PATH);
