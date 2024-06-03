@@ -1,10 +1,7 @@
 package com.org.coops.base;
 
-import java.nio.file.Paths;
-
-import com.org.coops.constant.Constant;
+import com.org.coops.factory.CSRFactory;
 import com.org.coops.logger.TestLogger;
-import com.org.coops.utilities.DateUtils;
 import com.org.coops.utilities.FileUtils;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -19,6 +16,7 @@ public class BaseTest {
     public void init(ITestContext context){
         FileUtils.init();
         TestLogger.init(context);
+        CSRFactory.setupCSR(context);
     }
 
     @BeforeMethod
@@ -34,5 +32,9 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(){
         page.context().browser().close();
+    }
+
+    public void navigateToCSR(){
+        CSRFactory.navigateToCSR(page);
     }
 }

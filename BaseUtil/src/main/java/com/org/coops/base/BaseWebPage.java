@@ -1,10 +1,12 @@
 package com.org.coops.base;
 
 import com.microsoft.playwright.options.SelectOption;
+import com.org.coops.factory.CSRFactory;
 import com.org.coops.logger.TestLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.microsoft.playwright.Page;
+import org.testng.ITestContext;
 
 import java.time.Duration;
 
@@ -34,5 +36,9 @@ public class BaseWebPage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void navigateToCSR(){
+        CSRFactory.navigateToCSR(driver);
     }
 }
