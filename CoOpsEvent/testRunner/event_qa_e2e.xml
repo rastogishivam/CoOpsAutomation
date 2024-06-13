@@ -15,18 +15,23 @@
     <parameter      name="tcrReport"                    value="true"/>
     <parameter      name="url"                          value="https://cooperators-qa-uatx.unqork.io/#/display/636ab779c134020fdd013ff0"/>
     <parameter      name="isCSR_Login"                  value="true"/>
-    <parameter      name="csr_url"                      value="https://co-opsauto-qa-uatx.unqork.io/app/poemcustomersupportportal#/display/64c3f5e3caa6f28bcf3daa13?id=66503f79fc5138618235ecd9"/>
+    <parameter      name="csr_url"                      value="https://cooperators-qa-uatx.unqork.io/app/duuocustomersupportportal#/display/63ed66dfc6840393eb028097"/>
 
     <test name="Event QA Regression Tests"               parallel="methods"              thread-count="1">
 
         <classes>
             <class name="com.event.e2e.Event_EndToEndScenarios">
                 <methods>
-                    <include name="validate_Event_E2EScenario_SingleEvent_Individual"/>
                     <exclude name="validate_Event_E2EScenario_SingleEvent_Individual"/>
                     <exclude name="validate_Event_E2EScenario_MultipleEvents_Individual"/>
                     <exclude name="validate_Event_E2EScenario_SingleEvent_Business"/>
-                    <include name="validate_Event_E2EScenario_MultipleEvents_Business"/>
+                    <exclude name="validate_Event_E2EScenario_MultipleEvents_Business"/>
+                    <exclude name="validate_Event_E2EScenario_SingleEvent_IndividualCoHost"/>
+                    <exclude name="validate_Event_E2EScenario_MultipleEvents_IndividualInsureds"/>
+                    <exclude name="validate_Event_E2EScenario_SingleEvent_DuplicateEmailAddress"/>
+                    <include name="validate_Event_E2EScenario_Payment_AddCard"/>
+                    <exclude name="validate_Event_E2EScenario_MultipleEvents_AlcoholServed"/>
+                    <exclude name="validate_Event_E2EScenario_SingleEvent_Sports_AlcoholServed"/>
                 </methods>
             </class>
         </classes>
