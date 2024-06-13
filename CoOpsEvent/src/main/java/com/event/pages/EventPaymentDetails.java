@@ -28,6 +28,8 @@ public class EventPaymentDetails {
     private String cardExpiry = "iframe[name='bambora-expiry-iframe']";
     private String nextPageHeader = "div#htmlCovered";
 
+    private String addCard = "#saveCardLabel span";
+
     public EventPaymentDetails(Page page){
     	driver = page;
     }
@@ -39,9 +41,8 @@ public class EventPaymentDetails {
     	return this;
     }
     
-    public EventPaymentDetails enterPaymentDetails()  {
-    	
-    	 //driver.pause();
+    public EventPaymentDetails enterPaymentDetails(String addCard)  {
+
     	
 
          driver.getByPlaceholder("1234 1234 1234 1234").isVisible();
@@ -68,43 +69,9 @@ public class EventPaymentDetails {
          driver.getByPlaceholder("Your CVV is a 3-digit number on the back of the card").isVisible();
          driver.frameLocator(cvvNumber).getByPlaceholder("Your CVV is a 3-digit number on the back of the card").fill(CVV);
         TestLogger.log("CVV  :: " + CVV);
-         clickOnPurchaseBtn();
-         
-//         driver.waitForTimeout(1000);
-         //driver.fill(cvv,CVV);
-         //driver.keyboard().type(CVV);
-//         driver.keyboard().press("Tab");
-        
-//         driver.isEnabled(purchaseBtn);
-         
-//         driver.click(purchaseBtn);
-         //driver.click(payBtn);
-//         driver.waitForTimeout(15000);
-
-         //driver.pause(); 
-//    	driver.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Payment Details")).click();
-//    	driver.frameLocator("iframe[name=\"bambora-card-number-iframe\"]").getByPlaceholder("1234 1234 1234").click();
-//    	
-//        driver.locator("body").click();
-//       
-//        driver.frameLocator("iframe[name=\"bambora-card-number-iframe\"]").getByPlaceholder("1234 1234 1234").click();
-//        driver.frameLocator("iframe[name=\"bambora-card-number-iframe\"]").getByPlaceholder("1234 1234 1234").click(new Locator.ClickOptions()
-//          .setModifiers(Arrays.asList(KeyboardModifier.CONTROL)));
-//        driver.frameLocator("iframe[name=\"bambora-card-number-iframe\"]").getByPlaceholder("1234 1234 1234").fill("4030000010001234");
-//        driver.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("John Doe")).click();
-//        driver.getByRole(AriaRole.TEXTBOX, new Page.GetByRoleOptions().setName("John Doe")).fill("Test");
-//        driver.frameLocator("iframe[name=\"bambora-expiry-iframe\"]").getByPlaceholder("MM / YY").click();
-//        driver.frameLocator("iframe[name=\"bambora-expiry-iframe\"]").getByPlaceholder("MM / YY").fill("04 / 30");
-//        driver.frameLocator("iframe[name=\"bambora-cvv-iframe\"]").getByPlaceholder("Your CVV is a 3-digit number").click();
-//        driver.frameLocator("iframe[name=\"bambora-cvv-iframe\"]").getByPlaceholder("Your CVV is a 3-digit number").fill("123");
-    	
-//        driver.pause();
-        //driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Pay $")).click();
-        //driver.dblclick(payButton);
-        //driver.click(payBtn);
-//        
-//        driver.waitForTimeout(25000);
-//        driver.pause();        
+        if(addCard.equals("Yes"))
+            clickOnAddCard();
+        clickOnPurchaseBtn();
 		return this;
     }
     
@@ -120,5 +87,14 @@ public class EventPaymentDetails {
     	boolean flagVisible = driver.isVisible(nextPageHeader);
         TestLogger.logStepAndVerify("Is the next Page header **Congrats! Your event is protected ** visible", flagVisible);
     	System.out.println("You are covered :: " + flagVisible);
+    }
+
+    public void clickOnAddCard() {
+        driver.waitForSelector(addCard);
+        boolean flagEnabled = driver.isEnabled(addCard);
+        TestLogger.logStepAndVerify("Is Add Card checkbox  ** Add card $ ** enabled", flagEnabled);
+        driver.click(addCard);
+        TestLogger.log("Add Card **is clicked");
+
     }
 }
