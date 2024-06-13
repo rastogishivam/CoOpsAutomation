@@ -18,6 +18,7 @@ public class ReviewYourQuote extends BaseWebPage {
     private String agreementPageHeader = "div#htmlPaymentHeader";
     private String selectYear = "//select[@class='pika-select pika-select-year']";
     private String selectMonth = "//select[@class='pika-select pika-select-month']";
+    private String selectDate = "//button[@data-pika-day='{1}']";
 
     public ReviewYourQuote(Page page){
         super(page);
@@ -35,7 +36,9 @@ public class ReviewYourQuote extends BaseWebPage {
         driver.click(coverageStartDateCalendar);
         if(date.equalsIgnoreCase("today")){
             TestLogger.log("Select the Coverage Start date from today :: " + DateUtils.getCurrentDay());
-            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
+            String dateLoc = switchToDynamicLocator(selectDate, DateUtils.getCurrentDay());
+            driver.click(dateLoc);
+//            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
         }else{
             String[] dates = date.split("/");
             s_logger.info("Select the Year : " + dates[2]);
@@ -47,7 +50,9 @@ public class ReviewYourQuote extends BaseWebPage {
             s_logger.info("Select the Month :: " + month);
             driver.selectOption(selectMonth, new SelectOption().setValue(month));
             s_logger.info("Select the Date :: " + dates[1]);
-            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(dates[1]).setExact(true)).click();
+            String dateLoc = switchToDynamicLocator(selectDate, dates[1]);
+            driver.click(dateLoc);
+//            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(dates[1]).setExact(true)).click();
             TestLogger.log("The Coverage Start Date selected :: " + date);
         }
         return this;

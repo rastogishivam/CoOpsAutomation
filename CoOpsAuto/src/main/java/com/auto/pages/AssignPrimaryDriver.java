@@ -12,6 +12,8 @@ public class AssignPrimaryDriver extends BaseWebPage {
     private String nextPageHeader = "div#htmlAcknowledgement";
     private String selectDriverFor1stVehicle = "(//select[@aria-label='primaryDriver'])[1]";
     private String selectDriverFor2ndVehicle = "(//select[@aria-label='primaryDriver'])[2]";
+    private String selectDriverFor3rdVehicle = "(//select[@aria-label='primaryDriver'])[3]";
+    private String selectDriverFor4thVehicle = "(//select[@aria-label='primaryDriver'])[4]";
 
     public AssignPrimaryDriver(Page page){
         super(page);
@@ -27,8 +29,22 @@ public class AssignPrimaryDriver extends BaseWebPage {
 
     public AssignPrimaryDriver selectDriverFor2ndVehicle(String firstName, String lastName){
         String driverName = firstName + " " + lastName;
-        TestLogger.log("Select the primary driver for the 1st Vehicle :: " + driverName);
+        TestLogger.log("Select the primary driver for the 2nd Vehicle :: " + driverName);
         driver.selectOption(selectDriverFor2ndVehicle, new SelectOption().setLabel(driverName));
+        return this;
+    }
+
+    public AssignPrimaryDriver selectDriverFor3rdVehicle(String firstName, String lastName){
+        String driverName = firstName + " " + lastName;
+        TestLogger.log("Select the primary driver for the 3rd Vehicle :: " + driverName);
+        driver.selectOption(selectDriverFor3rdVehicle, new SelectOption().setLabel(driverName));
+        return this;
+    }
+
+    public AssignPrimaryDriver selectDriverFord4thVehicle(String firstName, String lastName){
+        String driverName = firstName + " " + lastName;
+        TestLogger.log("Select the primary driver for the 3rd Vehicle :: " + driverName);
+        driver.selectOption(selectDriverFor4thVehicle, new SelectOption().setLabel(driverName));
         return this;
     }
 

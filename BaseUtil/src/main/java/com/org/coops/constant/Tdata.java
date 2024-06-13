@@ -4,6 +4,10 @@ public class Tdata {
 
     public static class completeDetails{
         public static final String OWNED = "Owned";
+        public static final String FIRST = "1";
+        public static final String SECOND = "2";
+        public static final String THIRD = "3";
+        public static final String FOURTH = "4";
         public static final String INSURANCE_HISTORY = "No vehicle/insurance previously required";
     }
     public static class ReviewYourQuote{

@@ -1,5 +1,6 @@
 package com.auto.pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.org.coops.logger.TestLogger;
 import com.org.coops.utilities.DateUtils;
@@ -15,6 +16,9 @@ public class LicenceInfo {
 	private String driverLicenceClassG = "input#driverLicenseClass-G";
 	private String driverLicenceClassG2 = "input#driverLicenseClass-G2";
 	private String driverYearLicensed = "input#driverYearLicensed";
+	private String monthG2Licence = "(//*[@aria-label='Month Licenced'])[1]";
+	private String driverLicCourseNotCompleted = "input#driverTraining-No";
+	private String driverLicCourseCompleted = "input#driverTraining-Yes";
 
 
     public LicenceInfo(Page page){
@@ -56,6 +60,14 @@ public class LicenceInfo {
 		return this;
 	}
 
+	public LicenceInfo selectMonth(String month){
+		TestLogger.log("Select the month to receive the G2 licence");
+		Locator locator = driver.locator(monthG2Licence);
+		locator.selectOption(month);
+		driver.waitForSelector(nextBtn);
+		return this;
+	}
+
 	public DrivingExperience clickNextButton() {
 		TestLogger.log("Click the next button at Driver Licence Page");
 		driver.click(nextBtn);
@@ -63,5 +75,17 @@ public class LicenceInfo {
 		boolean isVisible = driver.isVisible(nextPageHeader);
 		TestLogger.logStepAndVerify("Is the User moved to Driving Experience Page", isVisible);
 		return new DrivingExperience(driver);
+	}
+
+	public LicenceInfo isDriverTrainingCourseComplete(boolean flag){
+		driver.waitForSelector(driverLicCourseCompleted);
+		if(flag){
+			TestLogger.log("Select the Driver Training Course Completed as Yes");
+			driver.click(driverLicCourseCompleted);
+		}else{
+			TestLogger.log("Select the Driver Training Course Completed as No");
+			driver.click(driverLicCourseNotCompleted);
+		}
+		return this;
 	}
 }
