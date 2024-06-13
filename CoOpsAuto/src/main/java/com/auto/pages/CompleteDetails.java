@@ -7,6 +7,8 @@ import com.org.coops.logger.TestLogger;
 
 public class CompleteDetails extends BaseWebPage {
     private Page driver;
+    private String  moreVehicleDetailsRequireBtn = "(//button[contains(@id,'btnMoreDetailsNeededVehicle')])[{1}]";
+    private String completeVehicleDetailsBtn = "(//button[contains(@id,'btnCompleteVehicle')])[{1}]";
     private String  moreVehicleDetailsRequirefor1st = "(//button[contains(@id,'btnMoreDetailsNeededVehicle')])[1]";
     private String moreVehicleDetailsRequirefor2nd = "(//button[contains(@id,'btnMoreDetailsNeededVehicle')])[2]";
     private String completeVehicleDetailsFor1st = "(//button[contains(@id,'btnCompleteVehicle')])[1]";
@@ -32,6 +34,29 @@ public class CompleteDetails extends BaseWebPage {
     public CompleteDetails(Page page){
         super(page);
         driver = page;
+    }
+
+    public CompleteDetails fillVehicleMoreDetails(String driverFirstName, String driverLastName, String vehicleOwnerShip, String whichDriver){
+        TestLogger.log("Click on Vehicle More Details Needed Button");
+        String dynLocForMoreDetailsBtn = switchToDynamicLocator(moreVehicleDetailsRequireBtn, whichDriver);
+        driver.click(dynLocForMoreDetailsBtn);
+        driver.waitForSelector(vehicleDetailsPage);
+        boolean isVisible = driver.isVisible(vehicleDetailsPage);
+        TestLogger.logStepAndVerify("Is the Ownership Status page opened", isVisible);
+        String driverOwner = driverFirstName + " " + driverLastName;
+        String dynloc = switchToDynamicLocator(selectRegisterOwner, driverOwner);
+        TestLogger.log("Select the Register Owner :: " + driverOwner);
+        System.out.println("Locator ::: " + dynloc);
+        driver.click(dynloc);
+        TestLogger.log("Select the Type of vehicle Ownership");
+        driver.getByLabel("Type of vehicle ownership").selectOption(vehicleOwnerShip);
+        TestLogger.log("Click to Save button at Ownership Status");
+        driver.click(saveBtn);
+        String dynLocCompleteVehicleBtn = switchToDynamicLocator(completeVehicleDetailsBtn, whichDriver);
+        driver.waitForSelector(dynLocCompleteVehicleBtn);
+        driver.isVisible(dynLocCompleteVehicleBtn);
+        wait(3);
+        return this;
     }
 
     public CompleteDetails fill2VehicleDetails(String driverFirstName, String driverLastName, String vehicleOwnerShip, String secondDriverFirstName, String secondDriverLastName, String secondVehicleOwnerShip){

@@ -6,7 +6,7 @@ import com.org.coops.logger.TestLogger;
 public class DrivingExperience {
 
     private Page driver;
-    private String nextBtn = "button#btnNextConvictions";
+    private String nextBtn = "(//button[contains(@id,'btnNextConvictions')])[last()]";
     private String nextPageHeader = "div#htmlVehicleAssignmentTitle";
     private String noMajorConvictions = "input#hasMajorConvictions-No";
     private String majorConvictions = "input#hasMajorConvictions-Yes";

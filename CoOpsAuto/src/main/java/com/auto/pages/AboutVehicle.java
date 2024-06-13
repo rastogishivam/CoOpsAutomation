@@ -1,11 +1,13 @@
 package com.auto.pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.SelectOption;
+import com.org.coops.base.BaseWebPage;
 import com.org.coops.logger.TestLogger;
 
 
-public class AboutVehicle {
+public class AboutVehicle extends BaseWebPage {
 
     private Page driver;
     private String vin = "input#vinAutomatic";
@@ -17,7 +19,8 @@ public class AboutVehicle {
     
 
     public AboutVehicle(Page page){
-    	driver = page;
+    	super(page);
+		driver = page;
     }
 
 	public AboutVehicle selectTrim(String trim){
@@ -43,22 +46,18 @@ public class AboutVehicle {
     
     public AboutVehicle enterHomeAddress(String homeAddress) {
     	TestLogger.log("Enter the Home Address :: " + homeAddress);
+		driver.waitForSelector(homeAddressInput);
     	driver.fill(homeAddressInput, homeAddress);
-    	driver.click(pageHeader);
-    	driver.waitForSelector(nextBtn);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
-		boolean isEnabled = driver.isEnabled(nextBtn);
-    	TestLogger.logStepAndVerify("Is the Next Button enabled, after entered the address", isEnabled);
+    	driver.click(vin);
     	return this;
     }
 
 	public VehiclePurchaseInfo clickNextButton() {
 		TestLogger.log("Click the next button at About Your Vehicle Page");
-		driver.isEnabled(nextBtn);
+		driver.waitForSelector(nextBtn);
+		wait(5);
+		boolean isEnabled = driver.isVisible(nextBtn);
+		TestLogger.logStepAndVerify("The Next Button is enabled, after filled the address", isEnabled);
 		driver.click(nextBtn);
 		driver.waitForSelector(nextPageHeader);
 		boolean isVisible = driver.isVisible(nextPageHeader);
