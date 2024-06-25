@@ -1,5 +1,6 @@
 package com.org.coops.base;
 
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.SelectOption;
 import com.org.coops.factory.CSRFactory;
 import com.org.coops.logger.TestLogger;
@@ -15,10 +16,13 @@ public class BaseWebPage {
     public static final Logger s_logger = LogManager.getLogger(BaseWebPage.class);
 	private Page driver;
     private static Logger logger;
+    private String topMenu = "//span[text()='{1}']/parent::button";
+    private String nextPageHeader = "//div[@id='jsGrid_gridSubs']";
     
     public BaseWebPage(Page page) {
     	logger = LogManager.getLogger(BaseWebPage.class);
     	driver = page;
+        driver.waitForLoadState(LoadState.DOMCONTENTLOADED);
     }
 
     public String switchToDynamicLocator(String loc, String dynValues){
@@ -40,5 +44,12 @@ public class BaseWebPage {
 
     public void navigateToCSR(){
         CSRFactory.navigateToCSR(driver);
+    }
+
+    public void clickTopMeun(String menuName){
+        s_logger.info("Click to Menu from Customers Page :: " + menuName);
+        String webElement = switchToDynamicLocator(topMenu, menuName);
+        driver.click(webElement);
+        driver.waitForSelector(nextPageHeader);
     }
 }

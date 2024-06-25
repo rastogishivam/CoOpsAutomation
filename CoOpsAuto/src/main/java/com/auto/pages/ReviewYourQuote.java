@@ -14,7 +14,7 @@ public class ReviewYourQuote extends BaseWebPage {
     private String yearlyFrequency = "input#radioTogglecoverageFrequency-Yearly";
     private String coverageStartDateCalendar = "input#effectiveDateQuote";
     private String reviewYourQuoteHeader = "div#htmlBindQuoteHere";
-    private String nextBtn = "button#btnNextBindHeresYourQuote";
+    private String nextBtn = "//button[@id='btnNextBindHeresYourQuote']";
     private String agreementPageHeader = "div#htmlPaymentHeader";
     private String selectYear = "//select[@class='pika-select pika-select-year']";
     private String selectMonth = "//select[@class='pika-select pika-select-month']";
@@ -38,7 +38,6 @@ public class ReviewYourQuote extends BaseWebPage {
             TestLogger.log("Select the Coverage Start date from today :: " + DateUtils.getCurrentDay());
             String dateLoc = switchToDynamicLocator(selectDate, DateUtils.getCurrentDay());
             driver.click(dateLoc);
-//            driver.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName(DateUtils.getCurrentDay()).setExact(true)).click();
         }else{
             String[] dates = date.split("/");
             s_logger.info("Select the Year : " + dates[2]);
