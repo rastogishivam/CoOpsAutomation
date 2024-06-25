@@ -6,7 +6,8 @@ import com.org.coops.logger.TestLogger;
 public class DrivingExperience {
 
     private Page driver;
-    private String nextBtn = "(//button[contains(@id,'btnNextConvictions')])[last()]";
+    private String nextBtn = "(//button[@id='btnNextConvictions'])[last()]";
+    private String nextBtnHidden = "(//button[@id='btnNextConvictionsHidden'])[last()]";
     private String nextPageHeader = "div#htmlVehicleAssignmentTitle";
     private String noMajorConvictions = "input#hasMajorConvictions-No";
     private String majorConvictions = "input#hasMajorConvictions-Yes";
@@ -45,7 +46,12 @@ public class DrivingExperience {
 
     public AssignPrimaryDriver clickNextButton() {
         TestLogger.log("Click the next button at Driver Experience Page");
-        driver.click(nextBtn);
+        try{
+            driver.click(nextBtn);
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+            driver.click(nextBtnHidden);
+        }
         driver.waitForSelector(nextPageHeader);
         boolean isVisible = driver.isVisible(nextPageHeader);
         TestLogger.logStepAndVerify("Is the User moved to Assign a primary driver to each vehicle Page", isVisible);
